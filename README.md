@@ -7,8 +7,8 @@ understand the tools of running the model
      - tokens
      - print
      - take input
-     
-     
+
+
 flask!! (backend) (20 min)
 - build our first API /ask (request and respones)
 (1:30 min)
@@ -23,3 +23,22 @@ flask!! (backend) (20 min)
 
 
 
+=======================
+
+create venv
+```bash
+$ python3 -m venv .venv
+```
+
+
+enter the venv
+```bash
+$ source .venv/bin/activate
+```
+
+download the libs
+```bash
+$ pip install -r requirements.txt
+```
+
+=======================
