@@ -37,3 +37,15 @@ start the flask server
 ```bash
 $ python app.py
 ```
+
+=====
+
+```
+User: Hello, how are you?
+
+Bot: Hi
+
+User: who is feras?
+
+Bot: Feras is a very talented programmer.
+```

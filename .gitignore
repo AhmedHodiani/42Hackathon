@@ -4,7 +4,6 @@ venv/
 .venv
 venv
 
-*.db
 *.pyc
 
 __pycache__/*
