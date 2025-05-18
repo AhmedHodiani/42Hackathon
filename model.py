@@ -44,5 +44,6 @@ def generate_answer(contexts = [], question = ''):
     result = pipe(prompt, max_new_tokens=200, temperature=0.5)
     text = result[0]['generated_text']
 
-    answer = text.split("Answer:")[1].split("Question:")[0].strip()
+    print(text)
+    answer = text[len(prompt) + 1: ].split('\n')[0]
     return answer
