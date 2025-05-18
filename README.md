@@ -13,7 +13,7 @@ We build 3 endpoints:
 
 The frontend is built using HTML, CSS, and JavaScript.
 
-
+We also have a very Basic but powerful RAG system to retreive info about 42 Amman, Jordan and Feras!! <3
 
 =======================
 
