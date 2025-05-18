@@ -8,11 +8,12 @@ app = Flask(__name__)
 def ask():
     data = request.json
     question = data.get('question', '')
+    system_prompt = data.get('system_prompt', 'you are a helpful assistant.')
     print(question)
 
 
     messages = get_latest_messages(10)
-    messages.insert(0, {"role": "system", "content": "you are a helpful assistant."})
+    messages.insert(0, {"role": "system", "content": system_prompt})
     messages.append({"role": "user", "content": question})
 
     print(messages)
@@ -22,6 +23,12 @@ def ask():
     insert_message("assistant", answer)
 
     return jsonify({'answer': answer})
+
+
+@app.route('/messages', methods=['GET'])
+def get_messages():
+    messages = get_latest_messages(10)
+    return jsonify(messages)
 
 
 if __name__ == '__main__':
