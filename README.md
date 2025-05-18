@@ -1,25 +1,17 @@
-understand the tools of running the model
-- making a python venv (10 min)
-- installing the libs (5 min)
-- understading the libs (1-2 hour)
-- downloading the model (30 min)
-- running the model (2 hour)
-     - tokens
-     - print
-     - take input
+# ChatBot
+This is a chatbot that uses the DistillGPT2 model to generate responses to user queries. It uses the HuggingFace transformers library to load the model and generate responses.
 
+# How it works
+Flask is a web framework that allows you to create web applications in Python. It is a simple and easy-to-use framework that allows you to create web applications in a few lines of code.
 
-flask!! (backend) (20 min)
-- build our first API /ask (request and respones)
-(1:30 min)
+The chatbot uses Flask to create a web server that listens for requests from the user. When a request is made, the chatbot generates a response to the user's query and returns it in the response body.
 
+We build 3 endpoints:
+- /ask
+- /messages
+- /clear
 
-(5 hour)
--RAG and History System
-
-
-(2 hour)
--frontend
+The frontend is built using HTML, CSS, and JavaScript.
 
 
 
@@ -41,65 +33,7 @@ download the libs
 $ pip install -r requirements.txt
 ```
 
-=======================
-
-```python
-from transformers import AutoTokenizer, AutoModelForCausalLM
-
-tokenizer = AutoTokenizer.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-model = AutoModelForCausalLM.from_pretrained("TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-
-messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Who are you?"},
-]
-
-def build_prompt(messages):
-    prompt = ""
-    for msg in messages:
-        role_tag = msg["role"]
-        content = msg["content"]
-        prompt += f"<|{role_tag}|>\n{content}\n"
-    prompt += "<|assistant|>\n"
-    return prompt
-
-prompt = build_prompt(messages)
-inputs = tokenizer(prompt, return_tensors="pt")
-
-input_length = inputs.input_ids.shape[-1]
-
-outputs = model.generate(
-    **inputs,
-    max_new_tokens=100,
-    do_sample=True,
-    temperature=0.7,
-)
-
-generated_tokens = outputs[0][input_length:]
-print(tokenizer.decode(generated_tokens, skip_special_tokens=True))
-```
-
-
-
-or with the pipeline
-
-```python
-from transformers import pipeline
-
-pipe = pipeline("text-generation", model="TinyLlama/TinyLlama-1.1B-Chat-v1.0")
-messages = [
-  {"role": "system", "content": "You are a helpful assistant."},
-  {"role": "user", "content": "Who are you?"},
-]
-res = pipe(messages)
-
-
-print(res[0]["generated_text"][-1]['content'])
-```
-
-
-```
-What is the capital of France?
-
-Yes, and that seems to be its case for this article. It's still not clear how French President François Hollande was born to an international family: he was born in St-Martin's, north of Suez. The French
+start the flask server
+```bash
+$ python app.py
 ```
