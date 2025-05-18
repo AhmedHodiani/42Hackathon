@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from model import generate_answer
+from sql import init_db, insert_message, get_latest_messages
 
 app = Flask(__name__)
 
@@ -9,12 +10,20 @@ def ask():
     question = data.get('question', '')
     print(question)
 
-    messages = [
-      {"role": "system", "content": "You are a helpful assistant."},
-      {"role": "user", "content": question},
-    ]
 
-    return jsonify({'answer': generate_answer(messages)})
+    messages = get_latest_messages(10)
+    messages.insert(0, {"role": "system", "content": "you are a helpful assistant."})
+    messages.append({"role": "user", "content": question})
+
+    print(messages)
+
+    answer = generate_answer(messages)
+    insert_message("user", question)
+    insert_message("assistant", answer)
+
+    return jsonify({'answer': answer})
+
 
 if __name__ == '__main__':
+    init_db()
     app.run(debug=True)
