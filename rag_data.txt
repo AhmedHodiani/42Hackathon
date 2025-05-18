@@ -2,12 +2,12 @@ Paris is the capital and most populous city of France.
 Berlin is the capital of Germany.
 Python is a programming language widely used for web development and AI.
 The program is part of the global 42 network, which includes 54 campuses in 31 countries, and is affiliated with Ecole 42, a French nonprofit coding school.
-42 Amman employs a unique, gamified, peer-to-peer, project-based learning approach, with no teachers, classrooms, or lectures. Students learn by collaborating on real-world projects and evaluating each other's work.
+42Amman employs a unique, gamified, peer-to-peer, project-based learning approach, with no teachers, classrooms, or lectures. Students learn by collaborating on real-world projects and evaluating each other's work.
 The program is open to all individuals over the age of 18, regardless of gender, background, education, or origin.
 The curriculum includes courses in cybersecurity, advanced algorithms, artificial intelligence, game development, robotics programming, and systems and network administration.
 The initial selection process attracted over 10,000 applicants, with 450 participants advancing through three intensive coding boot camps. Ultimately, 158 students were selected for the inaugural cohort, with a 41% female participation rate.
 The program's headquarters were inaugurated by HRH Crown Prince Hussein, the Regent, in July 2024.
-42 Amman plans to expand its reach by launching a program in Irbid to serve the northern region of Jordan.
+42Amman plans to expand its reach by launching a program in Irbid to serve the northern region of Jordan.
 The program is supported by strategic partners such as Zain, which aligns with its innovation platform and mission to incubate Jordanian creatives and young talents.
-Graduates of the program have achieved42 Amman is a free, full-time computer programming school launched in February 2024 by the Crown Prince Foundation (CPF) in partnership with CHAMS Association, the Ministry of Planning and International Cooperation, and the French Embassy.
- high employment rates in international technology companies, contributing to Jordan's digital transformation and economic development.
+Graduates of the program have achieved 42Amman is a free, full-time computer programming school launched in February 2024 by the Crown Prince Foundation (CPF) in partnership with CHAMS Association, the Ministry of Planning and International Cooperation, and the French Embassy.
+high employment rates in international technology companies, contributing to Jordan's digital transformation and economic development.

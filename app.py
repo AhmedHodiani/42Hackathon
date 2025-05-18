@@ -16,9 +16,9 @@ def ask():
 
     print(question)
 
-    context = retrieve_context(question, 1)
-    print("============: ", context)
-    answer = generate_answer(context, question)
+    contexts = retrieve_context(question, 3)
+    print("============: ", contexts)
+    answer = generate_answer(contexts, question)
  
     insert_message("user", question)
     insert_message("assistant", answer)
