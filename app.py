@@ -1,9 +1,7 @@
-from transformers import pipeline
+from flask import Flask
 
-classifier = pipeline("sentiment-analysis")
+app = Flask(__name__)
 
-
-res = classifier("hello hi my name is Ahmed")
-
-
-print(res)
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
