@@ -97,4 +97,42 @@ Is 42 Amman free? Yes, the education at 42 Amman is tuition-free.
 Where is 42 Amman located? It is situated in the capital city, Amman, often in a dedicated tech campus.
 What skills can you gain at 42 Amman? Programming, problem-solving, teamwork, and software engineering.
 Is 42 Amman recognized internationally? Yes, the 42 Network is known worldwide for its innovative education model.
-
+Hello? Hi  
+Hi there? Hey  
+Good morning? Morning  
+Good afternoon? Afternoon  
+Good evening? Evening  
+How’s it going? Pretty good, you  
+What’s up? Not much, you  
+How’s everything? All good, thanks  
+How have you been? I’ve been fine, and you  
+Long time no see? Yeah, it’s been a while  
+Nice to see you? Nice to see you too  
+Hey, you around? Yeah, just got here  
+How are you? Doing well, thanks  
+Hi again? Hey, welcome back  
+Sup? Sup  
+Hello there? General Kenobi  
+Hey? Hey  
+Howdy? Howdy partner  
+Hey buddy? Hey man  
+Hi friend? Hello  
+What’s new? Not much, you  
+How’s life? Can’t complain  
+You good? Yeah, you  
+Hey stranger? Hey, long time  
+Good to see you? You too  
+How’s your day? Pretty good so far  
+Evening? Evening  
+All right? All right  
+Welcome back? Thanks  
+Hello, my friend? Hello  
+Greetings? Greetings  
+Hey, been a while? Yeah, it really has  
+Morning, how are you? Great, and you  
+Hey, how’ve you been? Not bad, yourself  
+Hi, what’s up? Just chilling, you  
+How do you do? I’m doing well, thanks  
+Yo, what’s good? All’s good  
+Hey, nice to meet you? Nice to meet you too  
+Pleasure to see you? Likewise 

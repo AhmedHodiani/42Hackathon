@@ -5,50 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatBot</title>
     <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
         #chat-container {
             width: 800px;
             margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
             position: relative;
         }
+
         #chat-window {
-            border: 1px solid #ccc;
-            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: 500px;
             overflow-y: auto;
-            margin-bottom: 10px;
-        }
-        #output {
             padding: 10px;
-            overflow-wrap: break-word;
+            background-color: #fafafa;
+            margin-bottom: 15px;
         }
+
+        #output p {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+
+        #output strong {
+            margin-right: 5px;
+        }
+
         #user-input {
-            width: calc(100% - 60px);
-            padding: 10px;
-            box-sizing: border-box;
+            width: calc(100% - 120px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
+
         #send-button {
-            width: 50px;
-            padding: 10px;
+            width: 80px;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
         }
+
+        #send-button:hover {
+            background-color: #45a049;
+        }
+
         #clear-button {
-            width: 100px;
-            padding: 10px;
             position: absolute;
-            top: 0px;
-            right: 0px;
+            top: 20px;
+            right: 20px;
+            padding: 10px 16px;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
+
+        #clear-button:hover {
+            background-color: #c0392b;
+        }
+
         #loading {
             display: none;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
-            animation: blink 0.5s infinite;
+            color: #555;
+            animation: blink 1s infinite;
         }
+
         @keyframes blink {
-            from { opacity: 1; }
-            to { opacity: 0; }
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
         }
     </style>
 </head>
@@ -59,9 +108,13 @@
             <div id="output"></div>
             <div id="feedback"></div>
         </div>
-        <input id="user-input" type="text" placeholder="Type your message here..." />
-        <button id="send-button">Send</button>
+        <div style="display: flex; align-items: center;">
+            <input id="user-input" type="text" placeholder="Type your message here..." />
+            <button id="send-button">Send</button>
+        </div>
     </div>
+
+    <div id="loading">...</div>
 
     <script>
         const outputDiv = document.getElementById('output');
@@ -69,48 +122,46 @@
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
         const clearButton = document.getElementById('clear-button');
-        const loadingDiv = document.createElement('div');
-        loadingDiv.id = 'loading';
-        loadingDiv.innerHTML = ' ...';
-        document.body.appendChild(loadingDiv);
+        const loadingDiv = document.getElementById('loading');
 
         function scrollToBottom() {
             chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
         (async () => {
-            const response = await fetch('http://localhost:5000/messages', {
-                method: 'GET'
-            });
+            try {
+                const response = await fetch('http://localhost:5000/messages', {
+                    method: 'GET'
+                });
 
-            const messages = (await response.json()).reverse();
-            messages.forEach(message => {
-                outputDiv.innerHTML += `<p><strong style="color: ${message.role === 'user' ? 'blue' : 'green'};">${message.role === 'user' ? 'User' : 'Bot'}:</strong> ${message.content}</p>`;
-            });
-            scrollToBottom();
+                const messages = (await response.json()).reverse();
+                messages.forEach(message => {
+                    outputDiv.innerHTML += `<p><strong style="color: ${message.role === 'user' ? '#007BFF' : '#28a745'};">${message.role === 'user' ? 'User' : 'Bot'}:</strong> ${message.content}</p>`;
+                });
+                scrollToBottom();
+            } catch (error) {
+                outputDiv.innerHTML += `<p><strong style="color: red;">Error:</strong> Could not load chat history.</p>`;
+            }
         })();
 
         sendButton.addEventListener('click', async () => {
-            const userMessage = userInput.value;
-            if (userMessage.trim() !== '') {
-                outputDiv.innerHTML += `<p><strong style="color: blue;">User:</strong> ${userMessage}</p>`;
+            const userMessage = userInput.value.trim();
+            if (userMessage !== '') {
+                outputDiv.innerHTML += `<p><strong style="color: #007BFF;">User:</strong> ${userMessage}</p>`;
                 userInput.value = '';
                 loadingDiv.style.display = 'block';
-
                 scrollToBottom();
 
                 try {
                     const response = await fetch('http://localhost:5000/ask', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ question: userMessage })
                     });
 
                     const data = await response.json();
                     loadingDiv.style.display = 'none';
-                    outputDiv.innerHTML += `<p><strong style="color: green;">Bot:</strong> ${data.answer}</p>`;
+                    outputDiv.innerHTML += `<p><strong style="color: #28a745;">Bot:</strong> ${data.answer}</p>`;
                     scrollToBottom();
                 } catch (error) {
                     loadingDiv.style.display = 'none';
