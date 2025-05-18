@@ -1,3 +1,4 @@
+README.md
 .venv/
 venv/
 
@@ -5,6 +6,5 @@ venv/
 venv
 
 *.db
-*.pyc
 
 __pycache__/*
