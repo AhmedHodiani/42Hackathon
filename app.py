@@ -1,18 +1,10 @@
 from flask import Flask, request, jsonify
-from model import generate_answer
-from sql import init_db, insert_message, get_latest_messages
+from model import generate_answer, retrieve_context
+from sql import init_db, insert_message, get_latest_messages, truncate_table
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
-SYSTEM_PROMPT = """
-you are a helpful assistant. you're responses should be short and to the point.
-you will be provided the last 5 messages between the user and the assistant.
-if the new question is a continuation of the conversation use the previous messages. to know the context.
-                        
-The last message is the new question
-"""
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -24,13 +16,10 @@ def ask():
 
     print(question)
 
-    messages = get_latest_messages(5)
-    messages.insert(0, {"role": "system", "content": SYSTEM_PROMPT})
-    messages.append({"role": "user", "content": question})
-
-    print(messages)
-
-    answer = generate_answer(messages)
+    context = retrieve_context(question, 1)
+    print("============: ", context)
+    answer = generate_answer(context, question)
+ 
     insert_message("user", question)
     insert_message("assistant", answer)
 
@@ -39,8 +28,14 @@ def ask():
 
 @app.route('/messages', methods=['GET'])
 def get_messages():
-    messages = get_latest_messages(10)
+    messages = get_latest_messages(20)
     return jsonify(messages)
+
+
+@app.route('/clear', methods=['POST'])
+def clear_messages():
+    truncate_table()
+    return jsonify({'message': 'Messages cleared'})
 
 
 if __name__ == '__main__':

@@ -38,3 +38,11 @@ def get_latest_messages(n):
     rows = cursor.fetchall()
     conn.close()
     return [{'role': row[0], 'content': row[1], 'created_at': row[2]} for row in rows]
+
+
+def truncate_table():
+    conn = sqlite3.connect(DB_NAME)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM messages')
+    conn.commit()
+    conn.close()

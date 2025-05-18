@@ -96,3 +96,10 @@ res = pipe(messages)
 
 print(res[0]["generated_text"][-1]['content'])
 ```
+
+
+```
+What is the capital of France?
+
+Yes, and that seems to be its case for this article. It's still not clear how French President François Hollande was born to an international family: he was born in St-Martin's, north of Suez. The French
+```
